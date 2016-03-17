@@ -1,0 +1,12 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+.idea/*
+.DS_*
+oauth2.dat
+*.csv
+recursos/*
+settings.py
+wsgi.py
+media/*
