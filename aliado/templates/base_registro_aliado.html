@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+	<head>{% block head %}
+		<meta charset="utf-8" />
+		<title>AliadosxEducacion</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="{{STATIC_URL}}assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace.min.css" />
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-skins.min.css" />
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		
+	{% endblock head %}</head>
+
+	
+	
+	<body>{% block content %}
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="icon-leaf"></i>
+							AxEducacion
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+
+			
+		<div class="main-container" id="main-container">{% block maincontainer%}
+			
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+				<img src="AliadosxEducacion_transparente.png">
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+					
+				
+				
+				<!-- BARRA LATERAL  -->
+					<ul class="nav nav-list" id ="breadcrumbs">
+						
+					</ul><!-- /.nav-list -->
+					
+				<!-- BARRA LATERAL  -->
+			
+
+
+					<div class="sidebar" id="sidebar">
+						<i class="" ></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+
+				<div class="main-content">{% block main-content %}
+					<div class="" id="">
+						
+						<ul class="breadcrumb">
+							
+						</ul><!-- .breadcrumb -->
+
+						<div class=" " id="">
+							
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								{% block form %}
+								{% endblock form %}
+								{% block prueba %}
+								{% endblock prueba %}
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				{% endblock main-content %}</div><!-- /.main-content -->
+
+				<div class="ace-settings-container" id="ace-settings-container">
+					
+				</div>
+				</div><!-- /#ace-settings-container -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		{% endblock maincontainer%}
+		</div><!-- /.main-container -->
+		
+	
+		
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		{% block script %}
+		<script type="text/javascript"> 
+			window.jQuery || document.write("<script src='{{STATIC_URL}}assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='{{STATIC_URL}}assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="{{STATIC_URL}}assets/js/bootstrap.min.js"></script>
+		<script src="{{STATIC_URL}}assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!-- ace scripts -->
+
+		<script src="{{STATIC_URL}}assets/js/ace-elements.min.js"></script>
+		<script src="{{STATIC_URL}}assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		{% endblock script %}
+	{% endblock content %}</body>
+
+
+
+	
+</html>
