@@ -6,6 +6,7 @@ urlpatterns = patterns ('aliado.views',
 
 	#url(r'^organizacion/', 'datos_organizacion', name='organizacion' ),
 
+	
 	url(r'^aliado/registrar/aliado', views.registrar_aliado, name='registrar_aliado'),
     
 	)

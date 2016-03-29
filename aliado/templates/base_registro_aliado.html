@@ -31,9 +31,12 @@
 
 		<!-- ace settings handler -->
 
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="{{STATIC_URL}}assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+	
+
 
 		
 	{% endblock head %}</head>
@@ -41,6 +44,7 @@
 	
 	
 	<body>{% block content %}
+
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -48,7 +52,9 @@
 
 			<div class="navbar-container" id="navbar-container">
 				<div class="navbar-header pull-left">
-					<a href="#" class="navbar-brand">
+					<a href="#" class="navbar-brand" align="center"	>
+						<img src="{{STATIC_URL}}assets/images/LOGO_EXE.png" alt="Empresarios por la Educación"
+						width="225" height="118" >
 						<small>
 							<i class="icon-leaf"></i>
 							AxEducacion
@@ -71,7 +77,7 @@
 
 			<div class="main-container-inner">
 				<a class="menu-toggler" id="menu-toggler" href="#">
-				<img src="AliadosxEducacion_transparente.png">
+				
 				</a>
 
 				<div class="sidebar" id="sidebar">
@@ -98,7 +104,7 @@
 			
 
 
-					<div class="sidebar" id="sidebar">
+				<div class="sidebar" id="sidebar">
 						<i class="" ></i>
 					</div>
 
@@ -108,36 +114,33 @@
 				</div>
 
 
-				<div class="main-content">{% block main-content %}
-					<div class="" id="">
-						
-						<ul class="breadcrumb">
+				<div class="main-content">
+					{% block main-content %}
+						>
+
+						<div class="page-content">
+						fsdfsdfsdf
+							<div class="row">
+								<div class="col-xs-12">
+									<!-- PAGE CONTENT BEGINS -->
+									{% block form %}
+
+									{% endblock form %}
+
+									{% block prueba %}
+									{% endblock prueba %}
+									<!-- PAGE CONTENT ENDS -->
+								
+								</div><!-- /.col -->
+								
+							</div><!-- /.row -->
 							
-						</ul><!-- .breadcrumb -->
-
-						<div class=" " id="">
-							
-						</div><!-- #nav-search -->
-					</div>
-
-					<div class="page-content">
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								{% block form %}
-								{% endblock form %}
-								{% block prueba %}
-								{% endblock prueba %}
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				{% endblock main-content %}</div><!-- /.main-content -->
-
-				<div class="ace-settings-container" id="ace-settings-container">
+						</div><!-- /.page-content -->
 					
-				</div>
-				</div><!-- /#ace-settings-container -->
+					{% endblock main-content %}
+				</div><!-- /.main-content -->
+
+				
 			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -175,6 +178,8 @@
 
 		<!-- inline scripts related to this page -->
 		{% endblock script %}
+		{% block js %}
+		{% endblock js %}
 	{% endblock content %}</body>
 
 
