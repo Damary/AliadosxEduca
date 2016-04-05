@@ -7,8 +7,8 @@ class RegistroUserForm(forms.Form):
 
     username = forms.CharField(min_length=5)
     email = forms.EmailField()
-    password = forms.CharField(min_length=5, widget=forms.PasswordInput())
-    password2 = forms.CharField(widget=forms.PasswordInput())
+    clave = forms.CharField(min_length=5, widget=forms.PasswordInput())
+    clave2 = forms.CharField(widget=forms.PasswordInput())
    
 
     def clean_username(self):
@@ -27,8 +27,8 @@ class RegistroUserForm(forms.Form):
 
     def clean_password2(self):
         """Comprueba que password y password2 sean iguales."""
-        password = self.cleaned_data['password']
-        password2 = self.cleaned_data['password2']
-        if password != password2:
+        clave = self.cleaned_data['clave']
+        clave2 = self.cleaned_data['clave2']
+        if clave != clave2:
             raise forms.ValidationError('Las contraseñas no coinciden.')
-        return password2
+        return clave2
