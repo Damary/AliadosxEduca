@@ -10,9 +10,11 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
 
-    url(r'^$', TemplateView.as_view(template_name="login.html"), name="login"),
+   # url(r'^login/$', 'django.contrib.auth.views.login'),
+   	url(r'^$', 'aliadosxeducacion.views.login_page', name="login"), 
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('aliado.urls')),
+    url(r'^cuentas/', include('cuentas.urls')),
 
     
 ]

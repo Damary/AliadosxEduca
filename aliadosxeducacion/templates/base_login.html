@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>{% block head %}
+        <meta charset="utf-8" />
+         <title>{% block titulo %}  {% endblock %} </title>
+
+        <meta name="description" content="User login page" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- basic styles -->
+
+        <link href="{{STATIC_URL}}assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome.min.css" />
+
+        <!-- page specific plugin styles -->
+
+        <!-- fonts -->
+
+        <link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-fonts.css" />
+
+        <!-- ace styles -->
+
+        <link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace.min.css" />
+        <link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-rtl.min.css" />
+
+       
+    {% endblock head %}</head>
+
+
+
+    <body class="login-layout"> {% block body %}
+        <div class="main-container">
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="login-container">
+                            <div class="center">
+                               
+                               
+                                <h4 class="blue">&copy;Aliados x Educación</h4>
+                            </div>
+
+                            <div class="space-6"></div>
+
+                            <div class="position-relative" >
+                                <div id="login-box" class="login-box visible widget-box no-border">
+                                    <div class="widget-body" >
+                                        <div class="widget-main">
+                                        <center>
+                                            <img src="{{STATIC_URL}}assets/images/LOGO_AXE.png" alt="Aliados por la Educación"
+                                            width="225" height="118" align="center"  border="0">
+                                        </center>  
+
+                                            <div class="space-6"></div>
+
+                                            {% block formulario %}
+                                            {% endblock formulario %}
+                                           
+                                                                                        
+                                        </div><!-- /widget-main -->
+
+                                        <div class="toolbar clearfix">
+                                            <div>
+                                                <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+                                                    <i class="icon-arrow-left"></i>
+                                                    ¡Olvidé mi Contraseña!
+                                                </a>
+                                            </div>
+                                            <div>
+                                            	 <a href= "{% url 'registrar_aliado'%}" return false;" class="forgot-password-link">
+                                                    Incribir una Empresa! <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><!-- /widget-body -->
+                                </div><!-- /login-box -->
+
+                                <div id="forgot-box" class="forgot-box widget-box no-border">
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <h4 class="header red lighter bigger">
+                                                <i class="icon-key"></i>
+                                                Recuperar Contraseña
+                                            </h4>
+
+                                            <div class="space-6"></div>
+                                            <p>
+                                                Ingrese su correo electrónico para recibir indicaciones
+                                            </p>
+
+                                            <form>
+                                                <fieldset>
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="email" class="form-control" placeholder="Email" />
+                                                            <i class="icon-envelope"></i>
+                                                        </span>
+                                                    </label>
+
+                                                    <div class="clearfix">
+                                                        <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+                                                            <i class="icon-lightbulb"></i>
+                                                            Send Me!
+                                                        </button>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div><!-- /widget-main -->
+
+                                        <div class="toolbar center">
+                                            <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+                                                Volver al login
+                                                <i class="icon-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div><!-- /widget-body -->
+                                </div><!-- /forgot-box -->
+                                
+                            </div><!-- /position-relative -->
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div><!-- /.main-container -->
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+
+        <script type="text/javascript">
+            window.jQuery || document.write("<script src='{{STATIC_URL}}assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+        </script>
+
+        <!-- <![endif]-->
+  
+
+        <script type="text/javascript">
+            if("ontouchend" in document) document.write("<script src='{{STATIC_URL}}assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+        </script>
+
+        <!-- inline scripts related to this page -->
+
+        <script type="text/javascript">
+            function show_box(id) {
+             jQuery('.widget-box.visible').removeClass('visible');
+             jQuery('#'+id).addClass('visible');
+            }
+        </script>
+    {% endblock body %}</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "base_login.html" %}
+
+{% block titulo %}LOGIN{% endblock titulo%} 
+
+{% block formulario %}
+
+  
+
+  {% if message %}
+    <b>{{message}}</b>
+  {% endif %}
+
+<div class="form-group" align="left" >
+  <form action="" method="POST" class="form-horizontal" >
+    {% csrf_token %}
+    <br>
+    {{form.as_p}}
+    <input class="btn btn-default" type="submit" value="Login" ></input>
+  </form>
+</div>
+{% endblock formulario %}
+	
+

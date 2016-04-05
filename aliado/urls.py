@@ -5,7 +5,6 @@ from . import views
 urlpatterns = patterns ('aliado.views',
 
 	#url(r'^organizacion/', 'datos_organizacion', name='organizacion' ),
-	url(r'^login', 'login', name='login'),
+	
 	url(r'^aliado/registrar/aliado', views.registrar_aliado, name='registrar_aliado'),
-    
 	)
