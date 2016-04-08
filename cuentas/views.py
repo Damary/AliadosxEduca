@@ -21,11 +21,11 @@ def registro_usuario(request):
             # del formulario y el valor es el valor si existe.
             cleaned_data = form.cleaned_data
             usuario = cleaned_data.get('usuario')
-            clave = cleaned_data.get('clave')
+            password = cleaned_data.get('password')
             email = cleaned_data.get('email')
             
             # E instanciamos un objeto User, con el username y password
-            user_model = User.objects.create_user(username=usuario, password=clave)
+            user_model = User.objects.create_user(username=usuario, password=password)
             # Añadimos el email
             user_model.email = email
             # Y guardamos el objeto, esto guardara los datos en la db.
@@ -50,3 +50,9 @@ def registro_usuario(request):
     context = {'form': form}
     # Y mostramos los datos
     return render(request, 'registro.html', context)
+
+
+def clean(self):
+   if 'password' in self.cleaned_data and 'password1' in self.cleaned_data and self.cleaned_data['password'] != self.cleaned_data['password1']:
+       raise forms.ValidationError("The password does not match ")
+   return self.cleaned_data

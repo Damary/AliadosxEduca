@@ -2,17 +2,20 @@
 
 {% load staticfiles %}
 
+
+
 {% block form %} 
 <form method="post" class="form-group">
 	{% csrf_token %}
 	{{aliado.as_p}}
 </form>
 <!-- Button trigger modal -->
-
-
-
-
 {% endblock form %}
+
+
+
+
+
 {% block js %} 
 	<script type="text/javascript">
 		$('input').addClass('form-control')

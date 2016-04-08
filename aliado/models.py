@@ -93,6 +93,8 @@ class Aldea(models.Model):
         verbose_name_plural = 'Aldeas'
         #unique_together = (("codigo", "municipio"),)
 
+
+
 def url(obj, filename):
         ruta = "documentos/%s/%s"%(obj.usuario_creador, obj.logo)
         return ruta

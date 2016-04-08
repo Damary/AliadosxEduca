@@ -14,8 +14,8 @@ def login_page(request):
 		form = LoginForm(request.POST)
 		error ={}
 		if form.is_valid():
-			usuario = request.POST['username']
-			clave = request.POST['password']
+			userame = request.POST['username']
+			password = request.POST.get('password')
 			user = authenticate(username=username, password=password)
 			if  user is not None:
 				if user.is_active:

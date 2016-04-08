@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 	<head>{% block head %}
 		<meta charset="utf-8" />
 		<title>AliadosxEducacion</title>
@@ -34,16 +32,10 @@
 		<script src="{{STATIC_URL}}assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-	
-
-
 		
 	{% endblock head %}</head>
-
 	
-	
-	<body>{% block content %}
+	<body class="skin-1">{% block content %}
 
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -69,54 +61,13 @@
 
 
 			
-		<div class="main-container" id="main-container">{% block maincontainer%}
-			
-
-			<div class="main-container-inner">
-				<a class="menu-toggler" id="menu-toggler" href="#">
-				
-				</a>
-
-				<div class="sidebar" id="sidebar">
-					
-
-					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-
-						</div>
-
-						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-							
-						</div>
-					</div><!-- #sidebar-shortcuts -->
-					
-				
-				
-				<!-- BARRA LATERAL  -->
-					<ul class="nav nav-list" id ="breadcrumbs">
+		<div class="main-container container" id="main-container" >{% block maincontainer%}
 						
-					</ul><!-- /.nav-list -->
-					
-				<!-- BARRA LATERAL  -->
-			
-
-
-				<div class="sidebar" id="sidebar">
-						<i class="" ></i>
-					</div>
-
-					<script type="text/javascript">
-						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
-					</script>
-				</div>
-
-
-				<div class="main-content">
+						
 					{% block main-content %}
-						>
-
+						
 						<div class="page-content">
-						fsdfsdfsdf
+						
 							<div class="row">
 								<div class="col-xs-12">
 									<!-- PAGE CONTENT BEGINS -->
@@ -135,10 +86,6 @@
 						</div><!-- /.page-content -->
 					
 					{% endblock main-content %}
-				</div><!-- /.main-content -->
-
-				
-			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
@@ -146,9 +93,6 @@
 		{% endblock maincontainer%}
 		</div><!-- /.main-container -->
 		
-	
-		
-
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -174,9 +118,14 @@
 		<script src="{{STATIC_URL}}assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+
+
+		
 		{% endblock script %}
 		{% block js %}
 		{% endblock js %}
+
+
 	{% endblock content %}</body>
 
 

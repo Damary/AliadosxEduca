@@ -7,8 +7,8 @@ class RegistroUserForm(forms.Form):
 
     username = forms.CharField(min_length=5)
     email = forms.EmailField()
-    clave = forms.CharField(min_length=5, widget=forms.PasswordInput())
-    clave2 = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(min_length=5, widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
    
 
     def clean_username(self):
@@ -27,15 +27,19 @@ class RegistroUserForm(forms.Form):
             raise forms.ValidationError('Ya existe un email igual en la db.')
         return email
 
-    def clean_clave2(self):
-        print 'clean_password2'
+    def clean_password2(self):
+        
         """Comprueba que password y password2 sean iguales."""
-        clave = self.cleaned_data['clave']
-        clave2 = self.cleaned_data['clave2']
-        if clave != clave2:
+        password = self.cleaned_data['password']
+        password2 = self.cleaned_data['password2']
+        print '¡¡¡¡¡¡¡¡¡¡¡¡', password2, password, '!!!!!!!!!!!'
+        if password != password2:
             print 'sadjasd', forms.ValidationError('Las contraseñas no coinciden.')
             raise forms.ValidationError('Las contraseñas no coinciden.')
         else:
             print '0000000000000000000000000000000'
 
-        return clave2
+        return password2
+
+class SomeForm(forms.Form):
+    name = forms.CharField(error_messages={'required':'Error Missing Field , Please Fill this Field'})
