@@ -2,23 +2,206 @@
 
 {% load staticfiles %}
 
-
-
 {% block form %} 
-<form method="post" class="form-group">
+
 	{% csrf_token %}
-	{{aliado.as_p}}
-</form>
+
+
+	<fieldset><h2 align="center"> <strong> Información de la Empresa/Organización </strong></h2></fieldset><br>
+
+	
+
+<div class="page-content">
+
+	<div class="row" >
+		<div class="col-md-9 col-md-offset-2" >
+			<form method="post" class="form-group">
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="nombre_comercial" dir ="rtl"> Nombre Comercial </label>
+					<div class="col-sm-9">
+						<input	id="id_nombre_comercial" name="nombre_comercial" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="razon_social" dir ="rtl"> Razón Social </label>
+					<div class="col-sm-9">
+						<input	id="id_razon_social" name="razon_social" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="rtn_aliado" dir ="rtl"> RTN </label>
+					<div class="col-sm-9">
+						<input	id="id_rtn_aliado" name="rtn_aliado" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="rubro_aliado" dir ="rtl"> Rubro </label>
+					<div class="col-sm-9">
+						{{aliado.rubro_aliado}}
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="direccion" dir ="rtl"> Dirección </label>
+					<div class="col-sm-9">
+						<input	id="id_direccion" name="direccion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+					<div class="col-sm-9">
+						<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+		
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+					<div class="col-sm-9">
+						<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="departamento" dir ="rtl"> Departamento </label>
+					<div class="col-sm-9">
+						 {{aliado.departamento}} 
+					</div>
+				</div>
+	
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="municipio" dir ="rtl"> Municipio </label>
+					<div class="col-sm-9">
+						<select	id="id_municipio" name="municipio" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+							<option	selected="selected"	value="0">---------</option>
+						</select>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Aldea </label>
+					<div class="col-sm-9">
+						<select	id="id_aldea" name="aldea" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+							<option	selected="selected"	value="0">---------</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Tipo de Aliado </label>
+					<div class="col-sm-9">
+						{{aliado.tipo_aliado}}
+					</div>
+				</div>
+
+				<div class="form-group estilo1" >
+					<label   class="col-sm-3 control-label no-padding-right" for="logo" dir ="rtl"> Logo </label>
+					<div class="col-sm-19">
+						<input	type="file" id="id_logo" name="logo"  class="col-xs-10 col-sm-5" ></input> 
+					</div>
+				</div>
+				
+			
+				<div class="col-md-9 col-md-offset-1" >
+					<div  class="col-xs-2 col-sm-5" >
+						<button class="btn btn-lg btn-success btn-block" >
+							<i class="icon-ok"></i>
+							Siguiente
+						</button>
+					</div>
+
+					<div  class="col-xs-2 col-sm-5" >
+						<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar Acción</span></button>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
 <!-- Button trigger modal -->
 {% endblock form %}
 
 
 
-
-
 {% block js %} 
 	<script type="text/javascript">
-		$('input').addClass('form-control')
-		$('select').addClass('form-control')
+		
+		
+	/*Esto le da estilo a los input*/
+	/*$('input').addClass('form-control')
+	$('select').addClass('form-control')
+	$('option').addClass('form-control')*/
+
+
+/*$(document).ready(function(){*/
+	
+	$("#id_departamento").on('change', function(){
+
+		$("#id_municipio").empty();
+		$("#id_municipio").append("<option value=''>-----------</option>");
+
+
+		$.ajax({
+			type: "GET",
+			data: {
+				bandera:'d',
+				id:$(this).val()
+			},
+
+			url: "{% url 'trae_municipios' %}",
+			success: function(msg) 
+			{
+				console.log('llego')
+				$.each(msg, function(key, val)
+				{
+					$("#id_municipio").append("<option value=" + val.pk +">"+val.codigo + '|' + val.nombre +" </option>");
+				});
+			}
+		});
+	});
+	
+
+	$("#id_municipio").on('change', function(){
+		$("#id_aldea").empty();
+		$("#id_aldea").append("<option value=''>---------------</option>");
+
+		$.ajax({
+			type: "GET",
+			data: {
+				bandera: 'f',
+				id:$(this).val()
+			},
+
+			url: "{% url 'trae_aldeas' %}",
+			success: function(msg)
+			{
+				console.log('llega a aldeas')
+				$.each(msg, function(key, val)
+				{
+					$("#id_aldea").append("<option value=" + val.pk + ">" + val.codigo + '|' + val.nombre + "</option>");
+				});
+			}
+		});
+	});	
+
+
+
+
+
+
 	</script>
 {% endblock js %}

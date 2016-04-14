@@ -1,0 +1,42 @@
+{% extends "base_registro_aliado.html" %}
+
+{% load staticfiles %}
+
+{% block form %} 
+
+	{% csrf_token %}
+
+
+	<fieldset><h2 align="center"> <strong> Rubros de Inversión</strong></h2></fieldset><br>
+
+	
+
+<div class="page-content">
+
+	<div class="row" >
+		<div class="col-md-12 col-md-offset-1" >
+			<form method="post" class="form-group">
+
+			<label>A Continuación Ingrese el rubro actual en el que invierte en educación:</label><br><br>
+
+			
+			<div class="container">
+			  <table >
+			   <tbody>
+			      <tr>
+			        <td>{{rubro}}</td>
+			        <td width="40px" ></td>
+			        <td><button  >Agregar</button></td>
+			      		       
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+
+
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock form %} 

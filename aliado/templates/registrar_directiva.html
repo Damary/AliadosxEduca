@@ -1,0 +1,82 @@
+{% extends "base_registro_aliado.html" %}
+
+{% load staticfiles %}
+
+{% block form %} 
+
+	{% csrf_token %}
+
+
+	<fieldset><h2 align="center"> <strong> Información de Directiva </strong></h2></fieldset><br>
+
+	<div class="page-content">
+
+	<div class="row" >
+		<div class="col-md-9 col-md-offset-2" >
+			<form method="post" class="form-group">
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="titulo" dir ="rtl"> Título </label>
+					<div class="col-sm-9">
+					{{directiva.titulo}}
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="nombre" dir ="rtl"> Nombre </label>
+					<div class="col-sm-9">
+						<input	id="id_nombre" name="nombre" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="cargo" dir ="rtl"> Cargo </label>
+					<div class="col-sm-9">
+						<input	id="id_cargo" name="cargo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+					<div class="col-sm-9">
+						<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+					<div class="col-sm-9">
+						<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				
+				<div class="form-group estilo1" >
+					<label class="col-sm-3 control-label no-padding-right" for="celular" dir ="rtl"> Celular </label>
+					<div class="col-sm-9">
+						<input	id="id_celular" name="celular" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+					</div>
+				</div>
+
+				<div class="col-md-9 col-md-offset-1" >
+					<div  class="col-xs-2 col-sm-5" >
+						<button class="btn btn-lg btn-success btn-block" >
+							<i class="icon-ok"></i>
+							Siguiente
+						</button>
+					</div>
+
+					<div  class="col-xs-2 col-sm-5" >
+						<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar Acción</span></button>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock form %} 

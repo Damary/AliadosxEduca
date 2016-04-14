@@ -9,7 +9,7 @@ class TipoAliado (models.Model):
     abreviatura = models.CharField(max_length=20, null=True, blank=True)
 
     def  __unicode__(self):
-        return u'%s, %s' % (self.nombre, self.abreviatura)
+        return u'%s' % (self.nombre)
 
 
 class RubroInversionEduca (models.Model):
@@ -17,7 +17,7 @@ class RubroInversionEduca (models.Model):
     abreviatura = models.CharField(max_length=20, null=True, blank=True)
 
     def  __unicode__(self):
-        return u'%s, %s' % (self.nombre, self.abreviatura)
+        return u'%s, %s' % (self.nombre)
 
 class OpcionRubroEduc(models.Model):
     nombre = models.CharField(max_length=120)
@@ -32,7 +32,7 @@ class RubroEmpresa(models.Model):
     abreviatura = models.CharField(max_length=20, null=True, blank=True)
 
     def  __unicode__(self):
-        return u'%s, %s' % (self.nombre, self.abreviatura)
+        return u'%s' % (self.nombre)
 
 class Departamento(models.Model):
     codigo = models.CharField(max_length=2, unique=True, help_text=u'Código Oficial del Departamento')
@@ -126,17 +126,26 @@ class Aliado (models.Model):
             self.rubro_aliado, self.departamento, self.municipio, self.aldea, self.tipo_aliado, self.rsc_rse, 
             self.rtn_fundacion, self.nombre_fundacion) 
 
+TITULO_DIRECTIVA = (
+    (1, u'ING.'), 
+    (2, u'LIC.'),
+    (3, u'PHD.'),
+    (4, u'MSC.'), 
+    (5, u'SRA.' ),
+    (6, u'SR.'),
+
+)
 
 class DirectivaAliado(models.Model):
     aliado = models.ForeignKey(Aliado)
-    titulo = models.CharField(max_length=7)
+    titulo = models.CharField(choices =TITULO_DIRECTIVA, max_length=7)
     nombre = models.CharField(max_length=150)
     cargo = models.CharField(max_length= 200)
     correo = models.CharField(max_length=50)
     telefono = models.IntegerField(null=True, blank=True)
     celular = models.IntegerField(null=True, blank=True)
     contacto_rsc_rse = models.BooleanField(default=False)
-    contacto_primario = models.BooleanField(default=True)
+    contacto_primario = models.BooleanField(default=False)
     usuario_creador = models.ForeignKey(User, related_name='persona_creo_directiva', null=True, blank=True)
     usuario_modifico = models.ForeignKey(User, related_name='persona_modifico_directiva', null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True, null=True, blank=True)

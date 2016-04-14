@@ -25,11 +25,25 @@
 		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/ace-skins.min.css" />
 
+		<link rel="stylesheet" href="{{STATIC_URL}}assets/css/chosen.css">
+
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 
 		<script src="{{STATIC_URL}}assets/js/ace-extra.min.js"></script>
+
+		<script type="text/javascript">
+			try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+		</script>
+
+
+
+		
+		
+		
+
+
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		
@@ -37,6 +51,12 @@
 	
 	<body class="skin-1">{% block content %}
 
+		<style type="text/css">
+			.estilo1{
+				padding-bottom: 25px;
+			}
+		</style>
+	
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -72,6 +92,8 @@
 								<div class="col-xs-12">
 									<!-- PAGE CONTENT BEGINS -->
 									{% block form %}
+
+
 
 									{% endblock form %}
 
