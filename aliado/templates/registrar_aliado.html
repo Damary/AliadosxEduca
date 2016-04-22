@@ -3,130 +3,453 @@
 {% load staticfiles %}
 
 {% block form %} 
+<fieldset><h2 align="center"> <strong> Información de la Empresa/Organización </strong></h2></fieldset><br>
 
-	{% csrf_token %}
+
+{% if error %}
+	<div  style="margin-top: 20px;">
+	 	{{error}}
+	</div>
+{% endif %}
+
+{% if exito %}
+	<div  style="margin-top: 20px;">
+	 	{{exito}}
+	 	<label>Ha sido exitoso</label>
+	</div>
+{% endif %}
 
 
-	<fieldset><h2 align="center"> <strong> Información de la Empresa/Organización </strong></h2></fieldset><br>
 
-	
+<div class="col-md-10 col-md-offset-1">
+	<div class="tabbable">
+		<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+			<li class="active">
+				<a data-toggle="tab" href="#home4">Información de la Empresa/Organización</a>
+			</li>
 
-<div class="page-content">
+			<li>
+				<a data-toggle="tab" href="#profile4">Información RSC/RSE</a>
+			</li>
 
-	<div class="row" >
-		<div class="col-md-9 col-md-offset-2" >
-			<form method="post" class="form-group">
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="nombre_comercial" dir ="rtl"> Nombre Comercial </label>
-					<div class="col-sm-9">
-						<input	id="id_nombre_comercial" name="nombre_comercial" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+			<li>
+				<a data-toggle="tab" href="#dropdown14">Información de Directiva</a>
+			</li>
+
+			<!-- <li>
+				<a data-toggle="tab" href="#profile5">Información RSC/RSE</a>
+			</li>
+
+			<li>
+				<a data-toggle="tab" href="#dropdown15">Información RSC/RSE</a>
+			</li> -->
+		</ul>
+
+		<div class="tab-content">
+			<div id="home4" class="tab-pane in active">
+
+				<div class="page-content">
+					<div class="row" >
+						<div class="col-md-9 col-md-offset-2" >
+							<form method="post" class="form-group">
+								{% csrf_token %}
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="nombre_comercial" dir ="rtl"> Nombre Comercial 
+									</label>
+									<div class="col-sm-9">
+										<input	id="id_nombre_comercial" name="nombre_comercial" type="text"  class="col-xs-10 col-sm-5"  	required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+										</input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="razon_social" dir ="rtl"> Razón Social
+									</label>
+									<div class="col-sm-9">
+										<input	id="id_razon_social" name="razon_social" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+										</input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="rtn_aliado" dir ="rtl"> RTN </label>
+									<div class="col-sm-9">
+										<input	id="id_rtn_aliado" name="rtn_aliado" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="rubro_aliado" dir ="rtl"> Rubro </label>
+									<div class="col-sm-9">
+										{{aliado.rubro_aliado}}
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="direccion" dir ="rtl"> Dirección </label>
+									<div class="col-sm-9">
+										<input	id="id_direccion" name="direccion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+									<div class="col-sm-9">
+										<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+						
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+									<div class="col-sm-9">
+										<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="departamento" dir ="rtl"> Departamento </label>
+									<div class="col-sm-9">
+										 {{aliado.departamento}} 
+									</div>
+								</div>
+					
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="municipio" dir ="rtl"> Municipio </label>
+									<div class="col-sm-9">
+										<select	id="id_municipio" name="municipio" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+											<option	selected="selected"	value="0">---------</option>
+										</select>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Aldea </label>
+									<div class="col-sm-9">
+										<select	id="id_aldea" name="aldea" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
+											<option	selected="selected"	value="0">---------</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Tipo de Aliado </label>
+									<div class="col-sm-9">
+										{{aliado.tipo_aliado}}
+									</div>
+								</div>
+
+								<div class="form-group estilo1" >
+									<label   class="col-sm-3 control-label no-padding-right" for="logo" dir ="rtl"> Logo </label>
+									<div class="col-sm-19">
+										<input	type="file" id="id_logo" name="logo"  class="col-xs-10 col-sm-5" ></input> 
+									</div>
+								</div>
+								
+							
+								<div class="col-md-9 col-md-offset-1" >
+									<div  class="col-xs-2 col-sm-5" >
+										<button class="btn btn-lg btn-success btn-block" >
+											<i class="icon-ok"></i>
+											Siguiente
+										</button>
+									</div>
+
+									<div  class="col-xs-2 col-sm-5" >
+										<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar</span></button>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
+				<p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
 
+			</div>
+
+			<div id="profile4" class="tab-pane">
+
+				<div class="page-content">
+					<div class="row" >
+						<div class="col-md-9 col-md-offset-2" >
+							<form method="post" class="form-group">
+								{% csrf_token %}
+								<div class="form-group estilo1" >
+									<label class= "col-md-6" >
+										<div class="col-md-6 control-label no-padding-right">
+											<input name="radio" id="radio_rsc" type="radio" class="col-md-6 col-md-5 " value="muestra" >
+											<span class="lbl"> RSC</span>
+										</div>
+									</label>
+									<label class= "col-md-6" >
+										<div class="col-md-6 control-label no-padding-right">
+											<input name="radio" type="radio" class="col-md-6 col-md-5" value="oculta">
+											<span class="lbl"> RSE </span>
+										</div>
+									</label>
+								</div>
+
+								<div id="div_muestra" class="hide">
+									<div class="form-group estilo1" >
+										<label class="col-sm-3 control-label no-padding-right" for="rtn" dir ="rtl"> Rtn  </label>
+										<div class="col-sm-9">
+											<input	id="id_rtn_fundacion" name="rtn_fundacion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+										</div>
+									</div>
+
+									<div class="form-group estilo1" >
+										<label class="col-sm-3 control-label no-padding-right" for="nombre_fundacion" dir ="rtl"> Nombre de la Fundación  </label>
+										<div class="col-sm-9">
+											<input	id="id_nombre_fundacion" name="nombre_fundacion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+										</div>
+									</div>
+
+									<div class="form-group estilo1" >
+										<label class="col-sm-3 control-label no-padding-right" for="direccion" dir ="rtl"> Dirección </label>
+										<div class="col-sm-9">
+											<input	id="id_direccion_fundacion" name="direccion_fundacion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+										</div>
+									</div><br>
+								</div>
+
+								<div class="form-group estilo1">
+									<h2 align="center"> <strong> Contacto RSC/RSE </strong></h2>
+								</div>
+
+
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="direccion" dir ="rtl"> Dirección </label>
+									<div class="col-sm-9">
+										<input	id="id_direccion_fundacion" name="direccion_fundacion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div><br>
+
+
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="titulo" dir ="rtl"> Título </label>
+									<div class="col-sm-9">
+									{{directiva.titulo}}
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="nombre" dir ="rtl"> Nombre </label>
+									<div class="col-sm-9">
+										<input	id="id_nombre" name="nombre" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="cargo" dir ="rtl"> Cargo </label>
+									<div class="col-sm-9">
+										<input	id="id_cargo" name="cargo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+									<div class="col-sm-9">
+										<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+									<div class="col-sm-9">
+										<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="celular" dir ="rtl"> Celular </label>
+									<div class="col-sm-9">
+										<input	id="id_celular" name="celular" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-4 control-label no-padding-right" dir ="rtl"> Agregar Contacto Secundario </label>
+									<div class="col-sm-2 control-label no-padding-right">
+										<input name="check_secundario" type="checkbox" value="muestra" id="id_check_secundario" />
+									</div>
+								</div>
+
+
+								<div id="div_muestra_secundario" class="hide">
+									<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="titulo" dir ="rtl"> Título </label>
+									<div class="col-sm-9">
+									{{directiva.titulo}}
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="nombre" dir ="rtl"> Nombre </label>
+									<div class="col-sm-9">
+										<input	id="id_nombre" name="nombre" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="cargo" dir ="rtl"> Cargo </label>
+									<div class="col-sm-9">
+										<input	id="id_cargo" name="cargo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+									<div class="col-sm-9">
+										<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+									<div class="col-sm-9">
+										<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="celular" dir ="rtl"> Celular </label>
+									<div class="col-sm-9">
+										<input	id="id_celular" name="celular" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+								</div>
+
+
+
+
+								<div class="col-md-9 col-md-offset-1" >
+									<div  class="col-xs-3 col-sm-5" >
+										<button class="btn btn-lg btn-success btn-block" >
+											<i class="icon-ok"></i>
+											Siguiente
+										</button>
+									</div>
+
+									<div  class="col-xs-2 col-sm-5" >
+										<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar </span></button>
+										</button>
+									</div><br><br><br><br>
+
+									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="razon_social" dir ="rtl"> Razón Social </label>
-					<div class="col-sm-9">
-						<input	id="id_razon_social" name="razon_social" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
-					</div>
-				</div>
-
 				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="rtn_aliado" dir ="rtl"> RTN </label>
-					<div class="col-sm-9">
-						<input	id="id_rtn_aliado" name="rtn_aliado" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
-					</div>
-				</div>
+				<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
 
+			</div>
+
+			<div id="dropdown14" class="tab-pane">
 				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="rubro_aliado" dir ="rtl"> Rubro </label>
-					<div class="col-sm-9">
-						{{aliado.rubro_aliado}}
+				<div class="page-content">
+					<div class="row" >
+						<div class="col-md-9 col-md-offset-2" >
+							<form method="post" class="form-group">
+								{% csrf_token %}
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="titulo" dir ="rtl"> Título </label>
+									<div class="col-sm-9">
+									{{directiva.titulo}}
+									</div>
+								</div>
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="nombre" dir ="rtl"> Nombre </label>
+									<div class="col-sm-9">
+										<input	id="id_nombre" name="nombre" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"></input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="cargo" dir ="rtl"> Cargo </label>
+									<div class="col-sm-9">
+										<input	id="id_cargo" name="cargo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
+									<div class="col-sm-9">
+										<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
+									<div class="col-sm-9">
+										<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								
+								<div class="form-group estilo1" >
+									<label class="col-sm-3 control-label no-padding-right" for="celular" dir ="rtl"> Celular </label>
+									<div class="col-sm-9">
+										<input	id="id_celular" name="celular" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
+									</div>
+								</div>
+
+								<div class="col-md-9 col-md-offset-1" >
+									<div  class="col-xs-2 col-sm-5" >
+										<button class="btn btn-lg btn-success btn-block" >
+											<i class="icon-ok"></i>
+											Siguiente
+										</button>
+									</div>
+
+									<div  class="col-xs-2 col-sm-5" >
+										<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar </span></button>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 
-				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="direccion" dir ="rtl"> Dirección </label>
-					<div class="col-sm-9">
-						<input	id="id_direccion" name="direccion" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
-					</div>
-				</div>
+				<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+			</div>
 
-				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="correo" dir ="rtl"> Correo Electrónico </label>
-					<div class="col-sm-9">
-						<input	id="id_correo" name="correo" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
-					</div>
-				</div>
+			<div id="profile5" class="tab-pane">
+				<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+			</div>
 
-		
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="telefono" dir ="rtl"> Teléfono </label>
-					<div class="col-sm-9">
-						<input	id="id_telefono" name="telefono" type="text"  class="col-xs-10 col-sm-5"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');"> </input>
-					</div>
-				</div>
+			<div id="dropdown15" class="tab-pane">
+				<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+			</div>
 
-				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="departamento" dir ="rtl"> Departamento </label>
-					<div class="col-sm-9">
-						 {{aliado.departamento}} 
-					</div>
-				</div>
-	
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="municipio" dir ="rtl"> Municipio </label>
-					<div class="col-sm-9">
-						<select	id="id_municipio" name="municipio" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
-							<option	selected="selected"	value="0">---------</option>
-						</select>
-					</div>
-				</div>
 
-				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Aldea </label>
-					<div class="col-sm-9">
-						<select	id="id_aldea" name="aldea" style="width:260px;"  required="required" oninvalid="this.setCustomValidity('Este campo es requerido');" oninput="this.setCustomValidity('');">
-							<option	selected="selected"	value="0">---------</option>
-						</select>
-					</div>
-				</div>
-				
-				<div class="form-group estilo1" >
-					<label class="col-sm-3 control-label no-padding-right" for="aldea" dir ="rtl"> Tipo de Aliado </label>
-					<div class="col-sm-9">
-						{{aliado.tipo_aliado}}
-					</div>
-				</div>
 
-				<div class="form-group estilo1" >
-					<label   class="col-sm-3 control-label no-padding-right" for="logo" dir ="rtl"> Logo </label>
-					<div class="col-sm-19">
-						<input	type="file" id="id_logo" name="logo"  class="col-xs-10 col-sm-5" ></input> 
-					</div>
-				</div>
-				
-			
-				<div class="col-md-9 col-md-offset-1" >
-					<div  class="col-xs-2 col-sm-5" >
-						<button class="btn btn-lg btn-success btn-block" >
-							<i class="icon-ok"></i>
-							Siguiente
-						</button>
-					</div>
 
-					<div  class="col-xs-2 col-sm-5" >
-						<button type="button" class="btn btn-lg btn-danger btn-block" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancelar Acción</span></button>
-						</button>
-					</div>
-				</div>
-			</form>
 		</div>
 	</div>
 </div>
@@ -138,7 +461,7 @@
 
 
 {% block js %} 
-	<script type="text/javascript">
+<script type="text/javascript">
 		
 		
 	/*Esto le da estilo a los input*/
@@ -147,7 +470,8 @@
 	$('option').addClass('form-control')*/
 
 
-/*$(document).ready(function(){*/
+	//Para mostrar municipios y aldeas según el departamento que se seleccione
+
 	
 	$("#id_departamento").on('change', function(){
 
@@ -199,7 +523,45 @@
 	});	
 
 
+	// Para Informacion RSC/RSE (oculta/muestra los inputs para datos de contacto RSC/RSE)
 
+	$("input[name='radio']").change(function() {
+
+		console.log('ppppp')
+		if( $(this).val() == "muestra") {
+
+			console.log('cequeo')
+			$('#div_muestra').removeClass('hide')
+			$('#div_muestra').show()
+		}
+		else{
+
+			console.log('algo fallo')
+			$('#div_muestra').hide()
+		}
+	});
+
+
+	$('#id_check_secundario').click(function() {
+
+		console.log('ppppp')
+		if( $(this).prop('checked') ) {
+
+			console.log('cequeo')
+
+			$('#div_muestra_secundario').removeClass('hide')
+			$('#div_muestra_secundario').show()
+		}
+		else{
+			console.log('llll')
+
+			console.log('algo fallo')
+			$('#div_muestra_secundario').hide()
+			
+		}
+
+
+	});
 
 
 
