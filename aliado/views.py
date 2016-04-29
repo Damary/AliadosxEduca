@@ -5,15 +5,16 @@ from django.template import RequestContext
 from aliado.models import *
 from . forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 import json
 # Create your views here.
 
 
-
+@login_required
 def registrar_aliado (request):
 
-	
+	print request.user, 'suarioooooooooooooooooooo'
 	departamento = Departamento.objects.all()
 	directiva = DirectivaFormulario()
 	aliado = AliadoFormulario(request.POST, request.FILES)
@@ -21,13 +22,6 @@ def registrar_aliado (request):
 	print 'aja'
 	if request.method == 'POST':
 
-		print 'request.GET', request.POST.get('id_nombre_comercial')
-		
-		
-		
-
-		print 'request.POST.get', request.POST.get('rtn_aliado')
-		
 		comprueba = Aliado.objects.filter(rtn_aliado = request.POST.get('rtn_aliado'))
 		print 'comprueba', comprueba
 		if comprueba:
@@ -56,6 +50,8 @@ def registrar_aliado (request):
 			registro.municipios = Municipio.objects.get( id = request.POST.get('municipio'))
 			registro.aldea = Aldea.objects.get( id= request.POST.get('aldea'))
 			registro.tipo_aliado =  TipoAliado.objects.get ( id= request.POST.get('tipo_aliado'))
+			registro.usuario_creador = request.user
+			registro.usuario_modifico = request.user
 			registro.save()
 			print 'ufffffff todo'
 			data =  {'departamento': departamento, 'aliado': aliado, 'directiva': directiva, 'exito': True }
@@ -66,6 +62,7 @@ def registrar_aliado (request):
 		print 'eje'
 		aliado = AliadoFormulario(request.POST)
 		data = { 'departamento': departamento, 'aliado': aliado, 'directiva': directiva }
+	
 				
 		
 

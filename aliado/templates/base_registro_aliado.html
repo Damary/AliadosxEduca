@@ -80,9 +80,13 @@
 		</div>
 
 
-			
 		<div class="main-container container" id="main-container" >{% block maincontainer%}
-						
+					 <div align="right" >
+						<a href="{% url 'logout' %}" >
+							<i class="icon-off" ></i>
+							Logout
+						</a>
+					</div> 
 						
 					{% block main-content %}
 						

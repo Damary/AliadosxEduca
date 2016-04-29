@@ -19,6 +19,13 @@ class UserProfile(forms.Form):
 	email = forms.EmailField(
 		widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
+	nombre = forms.CharField(
+		widget = forms.TextInput(attrs = {'class': 'form-control'}))
+
+	apellido = forms.CharField(
+		widget= forms.TextInput(attrs = {'class': 'form-control'}))
+	print 'oooooooooooooooooooooo', nombre
+
 	password = forms.CharField(
 		min_length=5,
 		widget=forms.PasswordInput(attrs={'class': 'form-control'}))

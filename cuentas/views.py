@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 from .forms import UserProfile
 from .models import PerfilUsuario
@@ -12,6 +13,7 @@ from .models import PerfilUsuario
 
 def registro_usuario(request):
     if request.method == 'POST':
+        print 'entra aqui'
         # Si el method es post, obtenemos los datos del formulario
         form = UserProfile(request.POST, request.FILES)
 
@@ -25,11 +27,16 @@ def registro_usuario(request):
             username = cleaned_data.get('username')
             password = cleaned_data.get('password')
             email = cleaned_data.get('email')
+            nombre = cleaned_data.get('nombre')
+            apellido= cleaned_data.get ('apellido')
+            print username, password, email, nombre, apellido, '!!!!!!!!'
             
             # E instanciamos un objeto User, con el username y password
-            user_model = User.objects.create_user(username=username, password=password)
+            user_model = User.objects.create_user(username=username, password=password, first_name=nombre, last_name=apellido, email=email)
             # Añadimos el email
             user_model.email = email
+            user_model.first_name = nombre
+            user_model.last_name = apellido
             # Y guardamos el objeto, esto guardara los datos en la db.
             user_model.save()
             # Ahora, creamos un objeto UserProfile, aunque no haya incluido
@@ -43,7 +50,8 @@ def registro_usuario(request):
             # Ahora, redireccionamos a la pagina cuentas/gracias.html
             # Pero lo hacemos con un redirect.
             print 'oiuewruierwre'
-            #return redirect(reverse('cuentas.gracias', kwargs={'username': username}))
+            return HttpResponseRedirect(reverse('login'))
+            
     else:
         # Si el mthod es GET, instanciamos un objeto RegistroUserForm vacio
         print  'errorrrrrrrrrrrrrrrrrrrrrrrrrrrr'
