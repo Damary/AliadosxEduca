@@ -23,10 +23,14 @@ def login_page(request):
 			print  user is not None, 'none', user
 			if  user is not None:
 				print 'None'
-				if user.is_active:
-					print 'active'
+				if user.is_active: 
+										
 					login(request, user)
 					message = ("Bienvenido")
+					template = 'URL PARA CREAR REGISTRO DE ALIADO'
+					aliado = UsuarioAliado.objects.get(usuario=user)
+					if aliado:
+						template = 'URL DE MENU PRINCIPAL'
 					return HttpResponseRedirect('aliado/registrar/aliado/')
 				else:
 					message = "Usuario Inactivo"

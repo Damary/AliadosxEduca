@@ -100,20 +100,21 @@ def url(obj, filename):
         return ruta
 
 class Aliado (models.Model):
-    nombre_comercial = models.CharField(max_length=150)
-    razon_social = models.CharField(max_length=150)
-    rtn_aliado = models.IntegerField(unique = True)
-    rubro_aliado = models.ForeignKey(RubroEmpresa)
-    direccion = models.CharField(max_length=200)
-    correo = models.CharField(max_length=50)
-    telefono = models.IntegerField()
+    nombre_comercial = models.CharField(max_length=150, null=True, blank=True)
+    
+    razon_social = models.CharField(max_length=150, null=True, blank=True)
+    rtn_aliado = models.CharField(unique = True, null=True, blank=True, max_length=14)
+    rubro_aliado = models.ForeignKey(RubroEmpresa, null=True, blank=True)
+    direccion = models.CharField(max_length=200, null=True, blank=True)
+    correo = models.CharField(max_length=50, null=True, blank=True)
+    telefono = models.CharField(null=True, blank=True, max_length = 8)
     departamento = models.ForeignKey(Departamento, null=True, blank=True)
     municipio = models.ForeignKey(Municipio, null=True, blank=True)
     aldea = models.ForeignKey(Aldea, null=True, blank=True)
     logo =  models.ImageField(upload_to="url", help_text=u'Seleccione el logo de la empresa', verbose_name=u'Logo:',null=True, blank=True )
-    tipo_aliado = models.ForeignKey(TipoAliado)
-    rsc_rse = models.CharField(max_length=3)
-    rtn_fundacion = models.IntegerField(null=True, blank=True)
+    tipo_aliado = models.ForeignKey(TipoAliado, null=True, blank=True)
+    rsc_rse = models.BooleanField(default=False) #True == RSC
+    rtn_fundacion = models.CharField(null=True, blank=True, max_length=14)
     nombre_fundacion = models.CharField(max_length=150, null=True, blank=True)
     direccion_fundacion = models.CharField(max_length=200, null=True, blank=True)
     usuario_creador = models.ForeignKey(User, related_name='persona_creador')
@@ -143,9 +144,9 @@ class DirectivaAliado(models.Model):
     cargo = models.CharField(max_length= 200)
     correo = models.CharField(max_length=50)
     telefono = models.IntegerField(null=True, blank=True)
-    celular = models.IntegerField(null=True, blank=True)
+    celular = models.CharField(null=True, blank=True, max_length=14)
     contacto_rsc_rse = models.BooleanField(default=False)
-    contacto_primario = models.BooleanField(default=False)
+    contacto_primario = models.BooleanField(default=True)
     usuario_creador = models.ForeignKey(User, related_name='persona_creo_directiva', null=True, blank=True)
     usuario_modifico = models.ForeignKey(User, related_name='persona_modifico_directiva', null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -187,6 +188,14 @@ class PeriodoRubroEduca(models.Model):
         return u'%s, %s, %s' %(self.rubro_educ_aliado, self.periodo, self.porcentaje)
 
 
+class UsuariosAliado (models.Model):
+    aliado = models.ForeignKey(Aliado, related_name='usuario_aliado')
+    usuario = models.ForeignKey(User, related_name = 'usuarioaliado_user')
+
+
+# AL CREAR USUARIO SI ENCUENTRA EL RTN, GUARDA USUARIO ALIADO, Y LUEGO MANDA AL MENU, SI NO ENCUENTRA EL RTN LO MANDA DE 
+#UN SOLO A REGISTRAR EL ALIADO Y HACE EL GUARDADO NORMAL Y AGREGAR EL USUARIO CREADOR A USUARIOS ALIADO, 
+#AGREGAR EL GUARDADO D USUARIOSALIADO EN LA VIEW DE REGISTRAR ALIADO
 
 
 
