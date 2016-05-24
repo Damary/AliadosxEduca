@@ -3,98 +3,24 @@
 {% block title %}Registro de usuario{% endblock title %}
 
 
+
 {% block formulario %}
 
-<!-- <div class="col-md-12 " style= "padding:25px; width: 100%;">
-     <div class="widget-body">
-        <div class="widget-main">
-                
-            <p> Ingrese su Información: </p>
 
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset>
-                    <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="email" class="form-control" id="id_email" name="email" placeholder="Email" />
-                            <i class="icon-envelope"></i>
-                        </span>
-                    </label>
-
-                    <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="text" class="form-control" id="id_username" name="username"  placeholder="Username" />
-                            <i class="icon-user"></i>
-                        </span>
-                    </label>
-
-
-                     <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="text" class="form-control" id="id_nombre" name="nombre"  placeholder="Nombre del encargado" />
-                            <i class="icon-user"></i>
-                        </span>
-                    </label>
-
-                     <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="text" class="form-control" id="id_apellido" name="apellido"  placeholder="Apellido del encargado" />
-                            <i class="icon-user"></i>
-                        </span>
-                    </label>
-
-
-                    <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="password" class="form-control" id="id_password" name="password" placeholder="Password" />
-                            <i class="icon-lock"></i>
-                        </span>
-                    </label>
-
-                    <label class="block clearfix">
-                        <span class="block input-icon input-icon-right">
-                            <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Repeat password" />
-                            <i class="icon-retweet"></i>
-                        </span>
-                    </label>
-
-                    <div class="space-24"></div>
-
-                    <div class="clearfix" align="center">                      
-
-                        <button type="submit" style= "width:100px;"  class="width-65  btn btn-sm btn-success">
-                            Registrar
-                            <i class="icon-arrow-right icon-on-right"></i>
-                        </button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+    <div class="page-header">
+        <h2>Registro Usuario</h2>
     </div>
-
-        <div class="toolbar center" style = "background-color: #fff;">
-            <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
-                <i class="icon-arrow-left"></i>
-                Back to login
-            </a>
-        </div>
-    </div><!-- /widget-body --> -->
-
-<div class="row">
-        <div class="col-md-6 col-sm-offset-3">
-            <div class="page-header">
-                <h2>Registro Usuario</h2>
-            </div>
-
-            <form method="post" action="" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Registrar</button>
-            </form>
-        </div>
+    <div class="form-group" align="left" >
+        <form method="post"  class="form-horizontal">
+            {% csrf_token %}
+            {{ form.as_p }}
+           <center><button type="submit" class="btn btn-primary">Registrar</button></center>
+        </form>
     </div>
+       
 
 {% endblock formulario %}
+
 {% block js %} 
     <script type="text/javascript">
         $('input').addClass('form-control')

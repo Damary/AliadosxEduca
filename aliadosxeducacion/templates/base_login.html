@@ -32,18 +32,17 @@
         <div class="main-container">
             <div class="main-content">
                 <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1">
+                    <div class="col-md-9 col-md-offset-1">
+
                         <div class="login-container">
-                            <div class="center">
-                               
-                               
-                                <h4 class="blue">&copy;Aliados x Educación</h4>
-                            </div>
+                          
+                                <h4 class="blue" style="width:500px" align="center" >&copy;Aliados x Educación</h4>
+                            
 
                             <div class="space-6"></div>
 
                             <div class="position-relative" >
-                                <div id="login-box" class="login-box visible widget-box no-border">
+                                <div id="login-box" class="login-box visible widget-box no-border" style="width:500px; height:auto;" >
                                     <div class="widget-body" >
                                         <div class="widget-main">
                                         <center>
@@ -53,32 +52,13 @@
 
                                             <div class="space-6"></div>
 
-                                            {% block formulario %}
-
-
-                                           
-
+                                            {% block formulario %}                            
                                             {% endblock formulario %}
-                                           
-                                                              
-                                        </div><!-- /widget-main -->
 
-                                        <div class="toolbar clearfix">
-                                            <div>
-                                                <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
-                                                    <i class="icon-arrow-left"></i>
-                                                    ¡Olvidé mi Contraseña!
-                                                </a>
-                                            </div>
-                                            <div>
-                                                <a href="{% url 'registro_usuario' %}" class="user-signup-link">
-                                                   Crear Usuario <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
+                                                                            
+                                    {% block formulario_registro %}  
+                                    {% endblock formulario_registro %}
 
-                                            {% block formulario_registro %}
-
-                                            {% endblock formulario_registro %}
                                             
                                         </div>
                                     </div><!-- /widget-body -->

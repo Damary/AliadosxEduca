@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from aliadosxeducacion.forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+
+from django.template.loader import get_template
+from aliado.models import UsuariosAliado
 
 def login_page(request):
 
@@ -20,20 +23,29 @@ def login_page(request):
 			password = request.POST.get('clave')
 			print 'username', username, 'password', password
 			user = authenticate(username=username, password=password)
-			print  user is not None, 'none', user
+			
 			if  user is not None:
-				print 'None'
-				if user.is_active: 
-										
-					login(request, user)
-					message = ("Bienvenido")
-					template = 'URL PARA CREAR REGISTRO DE ALIADO'
-					aliado = UsuarioAliado.objects.get(usuario=user)
-					if aliado:
-						template = 'URL DE MENU PRINCIPAL'
-					return HttpResponseRedirect('aliado/registrar/aliado/')
-				else:
-					message = "Usuario Inactivo"
+				try:
+					if user.is_active: 
+						login(request, user)
+						
+						aliado = UsuariosAliado.objects.filter(usuario=user.id)
+						
+						if aliado:
+							print 'verdadero'
+							return render(request, 'menu_principal_aliado.html')
+						else:
+							print 'retorna'
+							return HttpResponseRedirect('aliado/registrar/aliado/')
+					else:
+						
+						message = "Usuario Inactivo"
+				except Exception, e:
+					print 'error:', e
+					message= ("Error del Sistema") 
+
+					return render_to_response( 'login.html', {'message':message, 'form':form}, context_instance = RequestContext(request))
+					
 			else:
 				message = "Nombre de Usuario y/o Contraseña equivocados"
 		else:

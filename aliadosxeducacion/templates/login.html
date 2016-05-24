@@ -17,24 +17,29 @@
     {{form.as_p}}
     <input class="btn btn-default" type="submit" value="Login" ></input>
 
-   <!--  <div class="toolbar clearfix">
-      <div>
-          <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
-              <i class="icon-arrow-left"></i>
-              ¡Olvidé mi Contraseña!
-          </a>
-      </div>
-      <div>
-          <a href="{% url 'registro_usuario' %}" class="user-signup-link">
-             Crear Usuario <i class="icon-arrow-right"></i>
-          </a>
-      </div>
-    </div> -->
-
-
   </form>
 </div>
 {% endblock formulario %}
+
+ {% block formulario_registro %}                       
+    </div><!-- /widget-main -->
+
+    <div class="toolbar clearfix">
+    <div>
+        <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+            <i class="icon-arrow-left"></i>
+            ¡Olvidé mi Contraseña!
+        </a>
+    </div>
+    <div>
+        <a href="{% url 'registro_usuario' %}" class="user-signup-link">
+           Crear Usuario <i class="icon-arrow-right"></i>
+        </a>
+    </div>
+
+
+
+{% endblock formulario_registro %}
 
 {% block js %} 
     <script type="text/javascript">

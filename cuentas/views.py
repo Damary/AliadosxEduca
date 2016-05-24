@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
-from .forms import UserProfile
-from .models import PerfilUsuario
+from aliado.models import *
+from . forms import *
+from django.template import RequestContext
 
 
 
 
 def registro_usuario(request):
     if request.method == 'POST':
+        departamento = Departamento.objects.all()
+        directiva = DirectivaFormulario()
+        aliado = AliadoFormulario(request.POST, request.FILES)
+        data = { 'departamento': departamento, 'aliado': aliado, 'directiva': directiva }
+
         print 'entra aqui'
         # Si el method es post, obtenemos los datos del formulario
         form = UserProfile(request.POST, request.FILES)
@@ -23,38 +29,29 @@ def registro_usuario(request):
             # form.cleaned_data obtiene los datos limpios y los pone en un
             # diccionario con pares clave/valor, donde clave es el nombre del campo
             # del formulario y el valor es el valor si existe.
-            cleaned_data = form.cleaned_data
-            username = cleaned_data.get('username')
-            password = cleaned_data.get('password')
-            email = cleaned_data.get('email')
-            nombre = cleaned_data.get('nombre')
-            apellido= cleaned_data.get ('apellido')
-            print username, password, email, nombre, apellido, '!!!!!!!!'
+    
+            rtnempresa = Aliado.objects.filter(rtn_aliado = request.POST.get('rtn_aliado'))
+                        
+            print 'dfasdasd', rtnempresa
+            try:
+                print 'entra try'
+                if rtnempresa:
+                   
+                   return HttpResponseRedirect(reverse('MenuPrincipal')) 
+                else:
+                
+                    return HttpResponseRedirect(reverse('RegistroAliado'))
+                 
+                    
+             
+            except Exception, e:
+                print 'erp<zx<zx<zx', e
             
-            # E instanciamos un objeto User, con el username y password
-            user_model = User.objects.create_user(username=username, password=password, first_name=nombre, last_name=apellido, email=email)
-            # Añadimos el email
-            user_model.email = email
-            user_model.first_name = nombre
-            user_model.last_name = apellido
-            # Y guardamos el objeto, esto guardara los datos en la db.
-            user_model.save()
-            # Ahora, creamos un objeto UserProfile, aunque no haya incluido
-            # una imagen, ya quedara la referencia creada en la db.
-            user_profile = PerfilUsuario()
-            # Al campo user le asignamos el objeto user_model
-            user_profile.user = user_model
-            
-            # Por ultimo, guardamos tambien el objeto UserProfile
-            user_profile.save()
-            # Ahora, redireccionamos a la pagina cuentas/gracias.html
-            # Pero lo hacemos con un redirect.
-            print 'oiuewruierwre'
-            return HttpResponseRedirect(reverse('login'))
+ 
             
     else:
         # Si el mthod es GET, instanciamos un objeto RegistroUserForm vacio
-        print  'errorrrrrrrrrrrrrrrrrrrrrrrrrrrr'
+        print  'GET'
         form = UserProfile()
     # Creamos el contexto
     context = {'form': form}

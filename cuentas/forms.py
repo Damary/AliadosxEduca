@@ -2,71 +2,93 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from aliado.models import *
 
 class UserProfile(forms.Form):
 
-	username = forms.CharField(min_length=5)
+	usuario = forms.CharField(min_length=5)
 	email = forms.EmailField()
 	password = forms.CharField(min_length=5, widget=forms.PasswordInput())
-	password2 = forms.CharField(widget=forms.PasswordInput())
+	repetir_password = forms.CharField(min_length=5,widget=forms.PasswordInput())
 	nombre = forms.CharField()
 	apellido = forms.CharField()
 
-	username = forms.CharField(
+	usuario = forms.CharField(
 	min_length=5,
-	widget=forms.TextInput(attrs={'class': 'form-control'}))
+	widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Escriba su Nombre de Usuario'}))
 
 	email = forms.EmailField(
-		widget=forms.EmailInput(attrs={'class': 'form-control'}))
+		widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Escriba su Correo Electrónico'}))
 
 	nombre = forms.CharField(
-		widget = forms.TextInput(attrs = {'class': 'form-control'}))
+		widget = forms.TextInput(attrs = {'class': 'form-control','placeholder':'Escriba su Nombre'}))
 
 	apellido = forms.CharField(
-		widget= forms.TextInput(attrs = {'class': 'form-control'}))
-	print 'oooooooooooooooooooooo', nombre
+		widget= forms.TextInput(attrs = {'class': 'form-control', 'placeholder':'Escriba su Apellido'}))
+	
+	rtn_aliado = forms.CharField(
+		widget= forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'RTN de la Empresa' }))
+	
 
 	password = forms.CharField(
 		min_length=5,
-		widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+		widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Escriba su Contraseña' }))
 
-	password2 = forms.CharField(
+	repetir_password = forms.CharField(
 		min_length=5,
-		widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+		widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme su Contraseña'}))
 	   
 
-	def clean_username(self):
-		print 'clean_username'
-		"""Comprueba que no exista un username igual en la db"""
-		username = self.cleaned_data['username']
-		print User.objects.filter(username=username), 'username', username
-		if User.objects.filter(username=username):
+	def clean_usuario(self):
+		
+		usuario = self.cleaned_data['usuario']
+		
+		if User.objects.filter(username=usuario):
 			raise forms.ValidationError('Nombre de usuario ya registrado.')
-		return username
+		return usuario
 
 	def clean_email(self):
-		print 'clean_email'
-		"""Comprueba que no exista un email igual en la db"""
+		
 		email = self.cleaned_data['email']
 		if User.objects.filter(email=email):
 			raise forms.ValidationError('Ya existe un email igual en la db.')
 		return email
 
-	def clean_password2(self):
+	def clean_repetir_password(self):
 		
-		"""Comprueba que password y password2 sean iguales."""
+		"""Comprueba que password y repetir_password sean iguales."""
 		password = self.cleaned_data['password']
-		password2 = self.cleaned_data['password2']
-		print '¡¡¡¡¡¡¡¡¡¡¡¡', password2, password, '!!!!!!!!!!!'
-		if password != password2:
-			print 'sadjasd', forms.ValidationError('Las contraseñas no coinciden.')
+		repetir_password = self.cleaned_data['repetir_password']
+		
+		if password != repetir_password:
+			
 			raise forms.ValidationError('Las contraseñas no coinciden.')
 		else:
-			print '0000000000000000000000000000000'
+			
 
-		return password2
+			return repetir_password
 
 
 
 class SomeForm(forms.Form):
 	name = forms.CharField(error_messages={'required':'Error Missing Field , Please Fill this Field'})
+
+
+class DirectivaFormulario(forms.Form):
+
+	class Meta:
+		model = DirectivaAliado
+		exclude = ['usuario_creador', 'usuario_modifico', 'aliado', 'contacto_rsc_rse', 'contacto_primario']
+
+class AliadoFormulario(forms.Form):
+	
+	departamento = forms.ModelChoiceField(label="Departamento ", queryset=Departamento.objects.all())
+	tipo_aliado = forms.ModelChoiceField(label = "Tipo de Aliado", queryset = TipoAliado.objects.all().order_by('nombre'))
+	
+	class Meta:
+		model = Aliado
+		fields = ['nombre_comercial', 'razon_social','rtn_aliado', 'direccion', 'correo',
+		'telefono',  'logo', 'tipo_aliado', 'rubro_aliado', 'departamento', 'municipio', 
+		'aldea' ,'rsc_rse', 'rtn_fundacion', 'nombre_fundacion', 'direccion_fundacion']
+
+		exclude = ['usuario_creador', 'usuario_modifico', 'fecha_creacion', 'fecha_modifico']

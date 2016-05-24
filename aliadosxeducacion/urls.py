@@ -12,7 +12,7 @@ urlpatterns = [
 
    # url(r'^login/$', 'django.contrib.auth.views.login'),
    	url(r'^$', 'aliadosxeducacion.views.login_page', name="login"),
-   	url(r'^accounts/login/$', 'aliadosxeducacion.views.login_page', name="login2"), 
+   	#url(r'^accounts/login/$', 'aliadosxeducacion.views.login_page', name="login2"), #Hace que si el usuario no esta logueado lo redirija al login 
    	url(r'^logout/$', 'aliadosxeducacion.views.logout_view', name="logout"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('aliado.urls')),

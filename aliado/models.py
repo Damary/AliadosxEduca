@@ -138,7 +138,7 @@ TITULO_DIRECTIVA = (
 )
 
 class DirectivaAliado(models.Model):
-    aliado = models.ForeignKey(Aliado)
+    aliado = models.ForeignKey(Aliado, related_name = 'aliado_directivaaliado')
     titulo = models.CharField(choices =TITULO_DIRECTIVA, max_length=7)
     nombre = models.CharField(max_length=150)
     cargo = models.CharField(max_length= 200)
@@ -157,7 +157,7 @@ class DirectivaAliado(models.Model):
             self.contacto_rsc_rse, self.contacto_primario)
 
 class Periodo (models.Model):
-    aliado = models.ForeignKey(Aliado)
+    aliado = models.ForeignKey(Aliado, related_name = 'aliado_periodo')
     periodo = models.IntegerField()
     fecha_inicio = models.DateField(auto_now_add=True)
     fecha_final = models.DateField( )
@@ -173,7 +173,7 @@ class Periodo (models.Model):
             self.fecha_final, self.presupuesto_minimo, self.presupuesto_maximo)
 
 class RubroEducaAliado (models.Model):
-    aliado = models.ForeignKey(Aliado)
+    aliado = models.ForeignKey(Aliado, related_name = 'aliado_rubroaliado')
     rubro_inversion_educac = models.ForeignKey(RubroInversionEduca)
 
     def __unicode__ (self):
